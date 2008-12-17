@@ -1,0 +1,21 @@
+<html>
+<head>
+<title>pins [% pins.file %]</title>
+</head>
+<body>
+<h1>pins [% pins.file %]</h1>
+<ul>
+[% FOREACH url IN pins.data.array %]<dl class="pin">
+<dt>
+<a href="[% url %]" title="[% url %]">
+[% pins.data.hash.${url}.title | html %]
+</a>
+</dt>
+<dd>
+[% IF pins.data.hash.${url}.content %][% pins.data.hash.${url}.content %][% END %]
+</dd>
+</dl>[% END %]
+</ul>
+</body>
+</html>
+

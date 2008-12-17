@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>pins</title>
+ <link href="http://fuba.moaningnerds.org/pin/index.cgi/pinslist"/>
+ <author>
+   <name>fuba</name>
+ </author>
+[% FOREACH url IN pins.data.array %]
+ <entry>
+   <title>[% pins.data.hash.${url}.title | html %]</title>
+   <link href="[% url %]"/>
+   <summary><![CDATA[[% IF pins.data.hash.${url}.content %][% pins.data.hash.${url}.content %][% END %]]]></summary>
+ </entry>
+[% END %]
+</feed>
+

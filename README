@@ -1,0 +1,46 @@
+オレオレ LDR ピン README
+
+1. オレオレピンの特徴
+  - clear した時に以前のピンを pins_store/ に保存します。
+  - ピンを拡張して content も保存します。
+  - 全文フィードを吐きます。
+
+2. オレオレピンのつかいかた
+  0. 必要な Perl モジュールを適当にインストールしてください。
+  1. config.yaml を編集し、ピンのログを保存するディレクトリを
+     指定してください。
+  2. index.cgi、pins_store ディレクトリのパーミッションを適切に
+     設定してください。
+  3. user.js をインストールしてからLDRを更新してください。
+  4. 適当に BASIC 認証かなんかかけて勝手に書き換えられない
+     ようにしてください。
+
+3. URL
+  - ピン互換 API
+    all: http://host/dir/index.cgi/all
+    add: /add
+    remove: /remove
+    clear: /clear
+
+  - 追加機能の URL
+    - HTML で表示
+      保存されているピンリストのリスト: /pinslist_list
+      ピンリスト: /pinslist/[id]
+      現在のピンリスト: /pinslist もしくは /pinslist/now
+
+    - Atom フィードで表示
+      ピンリスト: /atom/[id]
+      現在のピンリスト: /atom もしくは /atom/now
+
+4. 問題点
+  - たまに content のせいで JSON の保存に失敗する。
+  - Firefox 3 で BASIC 認証ダイアログが表に出てこない。
+  - たぶん Hack LDR API と共存できない。
+
+4 で挙げた他にもバグがあるとおもいます。
+もしかしたら危険な動作をするかもしれません。
+コードを読んでからご利用ください。
+
+--
+fuba <ecceecce at gmail.com>
+

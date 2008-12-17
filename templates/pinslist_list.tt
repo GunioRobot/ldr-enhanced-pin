@@ -1,0 +1,11 @@
+<html>
+<head>
+<title>pins files</title>
+</head>
+<body>
+<h1>pins files</h1>
+<ul>
+[% FOREACH p IN pins.file_list %]<li class="pins"><a href="./pinslist/[% p %]">[% p %]</a></li>[% END %]
+</ul>
+</body>
+</html>
