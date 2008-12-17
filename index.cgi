@@ -11,6 +11,8 @@ my $yaml = './config.yaml';
 my $conf = YAML::LoadFile($yaml);
 
 my $log = $conf->{log};
+mkdir $log, 0606 unless (-e $log);
+
 my $templatedir = './templates';
 my $template = Template->new({INCLUDE_PATH => $templatedir});
 
