@@ -15,7 +15,7 @@
          plagger_server = window.prompt('set pin server');
          GM_setValue("server", plagger_server);
      }
-     
+
      /*
       API
      */
@@ -85,14 +85,14 @@
              if(typeof onload != "function"){
                  onload = function() {};
              }
-             
+
              var server = /pin/.test(this.ap)
                  ? plagger_server
                  : "http://"+location.host;
              w.Object.extend(param, API.StickyQuery);
-             
+
              var self = this;
-             
+
              var api_post = function () {
                  window.setTimeout(GM_xmlhttpRequest, 0, {
                      method: 'POST',
@@ -116,7 +116,7 @@
                      }.bind(self)
                  });
              };
-             
+
              window.setTimeout(GM_xmlhttpRequest, 0, {
                  method: 'GET',
                  url: server + self.ap,
@@ -141,7 +141,7 @@
         w.register_hook("after_init", function () { w.API = API }); // LDR
     }
     /*
-   
+
     */
 })(unsafeWindow);
 
@@ -161,9 +161,9 @@ location.href = 'javascript:(' + function(){
         }
         this.pins.unshift(data);
         this.update_view();
-        
+
         var content = $("item_body_" + item_id).innerHTML;
-        
+
         if(!Config.use_pinsaver) return;
         var api = new API("/api/pin/add");
         api.post({

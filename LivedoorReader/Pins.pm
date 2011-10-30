@@ -13,7 +13,7 @@ __PACKAGE__->mk_accessors(qw/file data errorcode/);
 sub new {
     my $pkg = shift;
     my %opt = @_;
-    
+
     my $self = {
         file => $opt{file} || "./pin.json",
         data => {
@@ -22,11 +22,11 @@ sub new {
         },
         errorcode => 0,
     };
-    
+
     bless $self, $pkg;
-    
+
     $self->load;
-    
+
     return $self;
 }
 
@@ -39,7 +39,7 @@ sub DESTORY {
 
 sub load {
     my $self = shift;
-    
+
     if (-e $self->{file}) {
         my $json = join '', read_file($self->{file});
         my $data = JSON::Syck::Load($json);
@@ -52,22 +52,22 @@ sub load {
 
 sub save {
     my $self = shift;
-    
+
     $self->save_as($self->{file});
 }
 
 sub save_as {
     my ($self, $file) = @_;
-    
+
     my $json = JSON::Syck::Dump($self->data);
-    
+
     write_file($file, $json);
 }
 
 sub all {
     my $self = shift;
     my $data = $self->data;
-    
+
     my @r = map {$data->{hash}->{$_}} @{$data->{array}};
     return JSON::Syck::Dump(\@r);
 }
@@ -75,7 +75,7 @@ sub all {
 sub add {
     my ($self, $pin) = @_;
     my $data = $self->data;
-    
+
     $pin->{created_on} = time;
     if ($pin->{link}) {
         unless ($data->{hash}->{$pin->{link}}) {
@@ -94,7 +94,7 @@ sub add {
 sub remove {
     my ($self, $pin) = @_;
     my $data = $self->data;
-    
+
     if ($data->{hash}->{$pin->{link}}) {
         my @new_array = grep {$_ ne $pin->{link}} @{$data->{array}};
         $data->{array} = \@new_array;
@@ -107,7 +107,7 @@ sub remove {
 
 sub clear {
     my $self = shift;
-    
+
     $self->data({
         array => [],
         hash => {}
@@ -117,12 +117,12 @@ sub clear {
 sub result {
     my $self = shift;
     my $error = $self->{errorcode};
-    
+
     my $r = {
         ErrorCode => $error,
         isSuccess => ($error) ? 0 : 1,
     };
-    
+
     return JSON::Syck::Dump($r);
 }
 

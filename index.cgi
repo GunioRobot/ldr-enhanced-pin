@@ -64,16 +64,16 @@ else{
         my $selected_pins = LivedoorReader::Pins->new(
             file => $file,
         );
-        
+
         $template->process("pinslist.tt", {pins => $selected_pins});
     }
     elsif ($mode eq 'atom') {
-        print $cgi->header(-type => 'text/xml;charset=utf-8'); 
+        print $cgi->header(-type => 'text/xml;charset=utf-8');
 	my $file = $log . '/' . ($value || 'now');
         my $selected_pins = LivedoorReader::Pins->new(
             file => $file,
         );
-        
+
         $template->process("atom.tt", {pins => $selected_pins});
     }
     exit;
